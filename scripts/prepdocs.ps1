@@ -73,6 +73,7 @@ if ($env:AZURE_OPENAI_API_KEY) {
 
 $cwd = (Get-Location)
 $dataArg = "`"$cwd/data/*`""
+#$dataArg = "`"$cwd/data/GPT4V_Examples/*`""
 $additionalArgs = ""
 if ($args) {
   $additionalArgs = "$args"
