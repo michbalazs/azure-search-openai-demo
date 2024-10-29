@@ -5,6 +5,7 @@ This guide provides more details for using the `prepdocs` script to index docume
 - [Supported document formats](#supported-document-formats)
 - [Overview of the manual indexing process](#overview-of-the-manual-indexing-process)
   - [Chunking](#chunking)
+  - [Categorizing data for enhanced search](#enhancing-search-functionality-with-data-categorization)
   - [Indexing additional documents](#indexing-additional-documents)
   - [Removing documents](#removing-documents)
 - [Overview of Integrated Vectorization](#overview-of-integrated-vectorization)
@@ -41,6 +42,12 @@ The script uses the following steps to index documents:
 3. Split the PDFs into chunks of text.
 4. Upload the chunks to Azure AI Search. If using vectors (the default), also compute the embeddings and upload those alongside the text.
 
+### Enhancing search functionality with data categorization
+
+To enhance search functionality, categorize data during the ingestion process with the `--category` argument, for example `scripts/prepdocs.ps1 --category ExampleCategoryName`. This argument specifies the category to which the data belongs, enabling you to filter search results based on these categories.
+
+After running the script with the desired category, ensure these categories are added to the 'Include Category' dropdown list. This can be found in the developer settings of [`Chat.tsx`](../app/frontend/src/pages/chat/Chat.tsx) and [`Ask.tsx`](../app/frontend/src/pages/ask/Ask.tsx). The default option for this dropdown is "All". By including specific categories, you can refine your search results more effectively.
+
 ### Chunking
 
 We're often asked why we need to break up the PDFs into chunks when Azure AI Search supports searching large documents.
@@ -65,10 +72,12 @@ You can also remove individual documents by using the `--remove` flag. Open eith
 
 ## Overview of Integrated Vectorization
 
-Azure AI search recently introduced an [integrated vectorization feature in preview mode](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-the-public-preview-of-integrated-vectorization-in/ba-p/3960809#:~:text=Integrated%20vectorization%20is%20a%20new%20feature%20of%20Azure,pull-indexers%2C%20and%20vectorization%20of%20text%20queries%20through%20vectorizers). This feature is a cloud-based approach to data ingestion, which takes care of document format cracking, data extraction, chunking, vectorization, and indexing, all with Azure technologies.
+Azure AI Search includes an [integrated vectorization feature](https://techcommunity.microsoft.com/t5/ai-azure-ai-services-blog/announcing-the-public-preview-of-integrated-vectorization-in/ba-p/3960809#:~:text=Integrated%20vectorization%20is%20a%20new%20feature%20of%20Azure,pull-indexers%2C%20and%20vectorization%20of%20text%20queries%20through%20vectorizers), a cloud-based approach to data ingestion. Integrated vectorization takes care of document format cracking, data extraction, chunking, vectorization, and indexing, all with Azure technologies.
 
 See [this notebook](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/integrated-vectorization/azure-search-integrated-vectorization-sample.ipynb) to understand the process of setting up integrated vectorization.
 We have integrated that code into our `prepdocs` script, so you can use it without needing to understand the details.
+
+You must first explicitly [enable integrated vectorization](./deploy_features.md#enabling-integrated-vectorization) in the `azd` environment to use this feature.
 
 This feature cannot be used on existing index. You need to create a new index or drop and recreate an existing index.
 In the newly created index schema, a new field 'parent_id' is added. This is used internally by the indexer to manage life cycle of chunks.

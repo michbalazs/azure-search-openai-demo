@@ -60,7 +60,7 @@
       "value": "${AZURE_SEARCH_SERVICE_LOCATION}"
     },
     "searchServiceSkuName": {
-      "value": "${AZURE_SEARCH_SERVICE_SKU=standard}"
+      "value": "${AZURE_SEARCH_SERVICE_SKU=basic}"
     },
     "searchQueryLanguage": {
       "value": "${AZURE_SEARCH_QUERY_LANGUAGE=en-us}"
@@ -98,6 +98,9 @@
     "chatGptDeploymentVersion":{
       "value": "${AZURE_OPENAI_CHATGPT_DEPLOYMENT_VERSION}"
     },
+    "chatGptDeploymentSkuName":{
+      "value": "${AZURE_OPENAI_CHATGPT_DEPLOYMENT_SKU}"
+    },
     "chatGptDeploymentCapacity":{
       "value": "${AZURE_OPENAI_CHATGPT_DEPLOYMENT_CAPACITY}"
     },
@@ -110,11 +113,29 @@
     "embeddingDeploymentVersion":{
       "value": "${AZURE_OPENAI_EMB_DEPLOYMENT_VERSION}"
     },
+    "embeddingDeploymentSkuName":{
+      "value": "${AZURE_OPENAI_EMB_DEPLOYMENT_SKU}"
+    },
     "embeddingDeploymentCapacity":{
       "value": "${AZURE_OPENAI_EMB_DEPLOYMENT_CAPACITY}"
     },
     "embeddingDimensions": {
       "value": "${AZURE_OPENAI_EMB_DIMENSIONS}"
+    },
+    "gpt4vModelName":{
+      "value": "${AZURE_OPENAI_GPT4V_MODEL}"
+    },
+    "gpt4vDeploymentName": {
+      "value": "${AZURE_OPENAI_GPT4V_DEPLOYMENT}"
+    },
+    "gpt4vDeploymentVersion":{
+      "value": "${AZURE_OPENAI_GPT4V_DEPLOYMENT_VERSION}"
+    },
+    "gpt4vDeploymentSkuName":{
+      "value": "${AZURE_OPENAI_GPT4V_DEPLOYMENT_SKU}"
+    },
+    "gpt4vDeploymentCapacity":{
+      "value": "${AZURE_OPENAI_GPT4V_DEPLOYMENT_CAPACITY}"
     },
     "openAiHost": {
       "value": "${OPENAI_HOST=azure}"
@@ -126,7 +147,7 @@
       "value": "${AZURE_OPENAI_API_VERSION}"
     },
     "azureOpenAiApiKey":{
-      "value": "${AZURE_OPENAI_API_KEY}"
+      "value": "${AZURE_OPENAI_API_KEY_OVERRIDE}"
     },
     "openAiApiKey": {
       "value": "${OPENAI_API_KEY}"
@@ -152,6 +173,9 @@
     "useGPT4V": {
       "value": "${USE_GPT4V=false}"
     },
+    "enableLanguagePicker": {
+      "value": "${ENABLE_LANGUAGE_PICKER=false}"
+    },
     "useSpeechInputBrowser": {
       "value": "${USE_SPEECH_INPUT_BROWSER=false}"
     },
@@ -160,6 +184,9 @@
     },
     "useSpeechOutputAzure": {
       "value": "${USE_SPEECH_OUTPUT_AZURE=false}"
+    },
+    "useChatHistoryBrowser": {
+      "value": "${USE_CHAT_HISTORY_BROWSER=false}"
     },
     "speechServiceName": {
       "value": "${AZURE_SPEECH_SERVICE}"
@@ -179,14 +206,14 @@
     "enforceAccessControl": {
       "value": "${AZURE_ENFORCE_ACCESS_CONTROL=false}"
     },
+    "disableAppServicesAuthentication": {
+      "value": "${AZURE_DISABLE_APP_SERVICES_AUTHENTICATION=false}"
+    },
     "enableGlobalDocuments": {
       "value": "${AZURE_ENABLE_GLOBAL_DOCUMENT_ACCESS=false}"
     },
     "enableUnauthenticatedAccess": {
       "value": "${AZURE_ENABLE_UNAUTHENTICATED_ACCESS=false}"
-    },
-    "tenantId": {
-      "value": "${AZURE_TENANT_ID}"
     },
     "authTenantId": {
       "value": "${AZURE_AUTH_TENANT_ID}"
@@ -232,6 +259,15 @@
     },
     "runningOnAdo": {
       "value": "${TF_BUILD}"
+    },
+    "deploymentTarget": {
+      "value": "${DEPLOYMENT_TARGET=containerapps}"
+    },
+    "webAppExists": {
+        "value": "${SERVICE_WEB_RESOURCE_EXISTS=false}"
+    },
+    "azureContainerAppsWorkloadProfile": {
+      "value": "${AZURE_CONTAINER_APPS_WORKLOAD_PROFILE=Consumption}"
     }
   }
 }
