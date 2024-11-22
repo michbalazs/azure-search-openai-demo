@@ -1,6 +1,3 @@
-import asyncio
-import pyodbc
-import pandas as pd
 from typing import Any, Coroutine, List, Literal, Optional, Union, overload
 
 from azure.search.documents.aio import SearchClient

@@ -622,7 +622,9 @@ const Chat = () => {
                         onChange={onIncludeCategoryChanged}
                         aria-labelledby={includeCategoryId}
                         options={[
-                            { key: "", text: t("labels.includeCategoryOptions.all") }
+                            { key: "", text: t("labels.includeCategoryOptions.all") },
+                            { key: "student", text: "Student" },
+                            { key: "staff", text: "Staff" }
                             // You can add a category key here for ingested data like below:
                             // { key: 'categoryName', text: 'Meaningful Category Name' }
                             // Alternatively, display the key to guide the user on what to type
